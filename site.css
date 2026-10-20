@@ -1,8 +1,8 @@
 /* Layout: one calm column like a journal page; drawings sit beside short lines of copy, and one night band in the middle, the way the app's onboarding turns to night.
    Always light, on purpose: the night band only reads as night against a day page. */
 :root{
-  --paper:#FAF9F5;        /* journalBackground */
-  --card:#F0EEE6;         /* journalCardBackground */
+  --paper:#F6F0E5;        /* warm paper cream, close to the app icon's */
+  --card:#ECE4D5;         /* warm divider tone for the cream paper */
   --ink:#141413;          /* primaryText */
   --soft:#73716D;         /* secondaryText */
   --pencil:#4A4944;       /* the books / journal drawings' grey */
