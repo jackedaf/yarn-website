@@ -104,17 +104,17 @@ a{color:inherit}
 }
 @keyframes flick{0%,58%{translate:0 0}62%{translate:0 -28%}66%{translate:0 -72%}70%,100%{translate:0 -100%}}
 .zzz{animation:zzz 2.4s steps(1) infinite}
-.apps-z{animation:bob 1.3s steps(1) infinite}
-.moon{animation:rock 1.4s steps(1) infinite;transform-origin:77% 10%}
+.apps-z{animation:bob 1.8s steps(1) infinite}
+.moon{animation:rock 2s steps(1) infinite;transform-origin:77% 10%}
 .colon{animation:blink 1s steps(1) infinite}
-.stars{animation:twinkle 2.2s steps(1) infinite}
+.stars{animation:twinkle 3s steps(1) infinite}
 /* The phone's light on Yarn's face changes as the videos change. */
 @keyframes flicker{0%{visibility:visible}14%{visibility:hidden}22%{visibility:visible}46%{visibility:hidden}58%{visibility:visible}66%{visibility:hidden}88%{visibility:visible}}
-.glow-hi{animation:flicker 1.9s steps(1) infinite}
+.glow-hi{animation:flicker 2.6s steps(1) infinite}
 .ring{position:absolute;inset:0}
 .pen{animation:write 2.2s steps(1) infinite;transform-origin:67% 86%}
 .feed{position:absolute;inset:0;clip-path:inset(11.9% 8.7% 5.1% 11.3%)}
-.feed .ink{animation:flick 1.2s steps(1) infinite}
+.feed .ink{animation:flick 1.6s steps(1) infinite}
 .feed .ink.next{top:100%;bottom:-100%}
 
 /* ---------- Header ---------- */

@@ -59,7 +59,7 @@
   document.querySelectorAll('.pop-on-view').forEach(el => arrive.observe(el));
 
   // The app icons round Yarn's head: each moves along an oval the shape of his
-  // face, one stop-motion step (11.25deg) per frame, turning as it goes so its
+  // face, one stop-motion step (11.25deg) at a time, turning as it goes so its
   // trail stays behind it. Positions are in the drawing's own pixels (450 square).
   const orbits = [...document.querySelectorAll('[data-orbit]')].map(el => {
     const [cx, cy, rx, ry, t0] = el.dataset.orbit.split(',').map(Number);
@@ -86,7 +86,7 @@
   ));
 
   const t0 = performance.now();
-  let frame = -1;
+  let frame = -1, orbitStep = -1;
   function tick(now) {
     const t = Math.max(0, now - t0);
 
@@ -94,12 +94,15 @@
     const f = Math.floor(t / 150);
     if (f !== frame) {
       frame = f;
-      placeOrbits(f % 32);
       for (const el of onScreen) {
         const b = +(el.dataset.b || 0);
         el.dataset.b = (b + 1 + Math.floor(Math.random() * 3)) % 4;
       }
     }
+
+    // The icons round Yarn's head step every 0.24s: about 8 seconds a turn.
+    const o = Math.floor(t / 240);
+    if (o !== orbitStep) { orbitStep = o; placeOrbits(o % 32); }
 
     for (const s of seqs) {
       const i = Math.min(Math.floor((t % s.loop) / s.ms), s.layers.length - 1);
