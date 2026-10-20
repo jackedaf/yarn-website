@@ -27,7 +27,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 a{color:inherit}
 .wrap{max-width:1000px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 [hidden]{display:none!important}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Hidden but still read by Google and screen readers. clip-path as well as clip, so Safari shows no stray pixel of it. */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 ::selection{background:var(--mark);color:var(--ink)}
 .night ::selection{background:var(--night-mark);color:var(--night-text)}
 :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
@@ -197,7 +198,6 @@ a{color:inherit}
   .feature p,.night p,.manifesto{margin-inline:auto}
   .picker{margin-inline:auto;text-align:left}
   .about .reader{order:-1}
-  .about .manifesto{text-align:left}
   .nav a.text{display:none}
   .night .wrap{padding-block:72px}
 }
