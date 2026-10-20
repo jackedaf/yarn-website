@@ -127,6 +127,13 @@ a{color:inherit}
 /* After the night band the zigzag carries on: its drawing is on the left, so the next one goes right. */
 .after-night .feature:nth-child(odd) .art{order:2}
 .after-night .feature:nth-child(even) .art{order:0}
+/* Pinned Notes and Privacy as a pair: drawing above, text below, side by side. */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(40px,7vw,88px);align-items:start}
+.after-night .pair .feature .art{order:0;height:190px;align-items:flex-end}
+.pair .feature{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:26px}
+.pair .feature p{margin-inline:auto;max-width:36ch}
+.pair .writer{width:min(240px,60vw)}
+.pair .lock{width:min(104px,30vw)}
 .feature .art{display:flex;justify-content:center}
 .feature h2,.night h2,.about h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.6vw,36px);line-height:1.1;margin:0 0 12px;text-wrap:balance}
 .feature p,.night p{margin:0;max-width:40ch;color:var(--soft);text-wrap:pretty}
@@ -155,12 +162,14 @@ a{color:inherit}
 .picker dd{margin:0;background:var(--night-pill);color:var(--night-text);border-radius:8px;padding:5px 11px;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
 
 /* ---------- About ---------- */
-.about{padding-block:0 24px}
-.about .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,6vw,72px);align-items:center}
-.about .copy{min-width:0}
+/* About is centred, a change of pace after the zigzag and the pair. */
+.about{padding-block:0 8px}
+.about .wrap{display:flex;flex-direction:column;align-items:center;gap:26px}
+.about .copy{min-width:0;max-width:46ch;text-align:center}
+.about .manifesto{text-align:center}
 .manifesto{margin:0;max-width:44ch;color:var(--soft);text-wrap:pretty}
 .writer{width:min(270px,66vw)}
-.reader{width:min(250px,62vw);margin:0 auto}
+.reader{width:min(200px,54vw);order:-1}
 
 /* ---------- Privacy ---------- */
 .features.after-night{padding-block:104px}
@@ -182,12 +191,13 @@ a{color:inherit}
 .foot a:hover{color:var(--ink)}
 
 @media (max-width:720px){
-  .feature,.night .wrap,.about .wrap{grid-template-columns:minmax(0,1fr)}
+  .feature,.night .wrap,.pair{grid-template-columns:minmax(0,1fr)}
   .feature .art,.feature:nth-child(even) .art,.after-night .feature:nth-child(odd) .art{order:0}
   .feature,.night .copy{text-align:center}
   .feature p,.night p,.manifesto{margin-inline:auto}
   .picker{margin-inline:auto;text-align:left}
   .about .reader{order:-1}
+  .about .manifesto{text-align:left}
   .nav a.text{display:none}
   .night .wrap{padding-block:72px}
 }
