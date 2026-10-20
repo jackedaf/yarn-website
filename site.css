@@ -121,8 +121,7 @@ a{color:inherit}
 /* ---------- Header ---------- */
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand .fig{width:38px}
-.brand span{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:.01em}
+.brand .fig{width:46px}
 .nav{display:flex;align-items:center;gap:22px;font-size:15px;font-weight:500}
 .nav a.text{text-decoration:none;color:var(--soft)}
 .nav a.text:hover{color:var(--ink)}
