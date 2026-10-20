@@ -23,6 +23,11 @@
 }
 
 html{scroll-behavior:smooth}
+/* No browser margin round the page, so the night band runs edge to edge. */
+html,body{margin:0}
+/* Nothing may stick out sideways: on iPhone that makes Safari zoom the whole page out. */
+html,body{overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 .wrap{max-width:1000px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
@@ -141,7 +146,9 @@ a{color:inherit}
 .feature .copy{min-width:0}
 .phone-stage{position:relative;display:block;width:min(200px,56vw);aspect-ratio:275/471}
 .phone-stage .scene{height:100%}
-.spinner{width:min(300px,76vw)}
+/* The spinning icons are full-size layers; keep their invisible corners inside the drawing. */
+.spinner{width:min(300px,76vw);overflow:hidden}
+@supports (overflow:clip){.spinner{overflow:clip}}
 .ball{width:min(210px,56vw)}
 .books{width:min(250px,64vw)}
 
