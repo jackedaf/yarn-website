@@ -94,15 +94,7 @@ a{color:inherit}
 .pencil{--c:var(--pencil)}
 
 /* Stop-motion timing: every move holds a pose, then snaps to the next. */
-@keyframes pop{
-  0%{transform:rotate(-4deg) scale(.94)}
-  30%{transform:rotate(3deg) scale(1.03)}
-  60%{transform:rotate(-1.2deg)}
-  100%{transform:none}
-}
 @keyframes bump{0%{transform:scale(1.035,.965)}50%{transform:scale(.985,1.015)}100%{transform:none}}
-.pop-on-load{animation:pop .42s steps(1) var(--d,0ms) backwards}
-.pop-on-view.pop{animation:pop .42s steps(1)}
 .layers{position:absolute;inset:0}
 .bump{animation:bump .25s steps(1);transform-origin:50% 100%}
 
@@ -274,7 +266,7 @@ a{color:inherit}
 }
 @media (prefers-reduced-motion: reduce){
   .boil,.boil[data-b]{filter:none}
-  .preset-track,.pop-on-load,.pop-on-view.pop,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
+  .preset-track,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
   .store:hover,.store:active{transform:none}
 }
 

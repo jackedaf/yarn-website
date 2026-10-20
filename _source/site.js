@@ -48,16 +48,6 @@
   });
   boils.forEach(el => seen.observe(el));
 
-  // Drawings give a little stop-motion hop the first time they come into view.
-  const arrive = new IntersectionObserver(entries => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      e.target.classList.add('pop');
-      arrive.unobserve(e.target);
-    }
-  }, { threshold: 0.4 });
-  document.querySelectorAll('.pop-on-view').forEach(el => arrive.observe(el));
-
   // The app icons round Yarn's head: each moves along an oval the shape of his
   // face, one stop-motion step (11.25deg) at a time, turning as it goes so its
   // trail stays behind it. Positions are in the drawing's own pixels (450 square).
