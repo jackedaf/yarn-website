@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<title>Yarn: Journal to Unlock Your Apps</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Yarn is a screen time app for iPhone that makes you journal to unlock distracting apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="icon" type="image/png" href="/img/icon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<meta property="og:site_name" content="Yarn">
+<meta property="og:title" content="Yarn: Journal to Unlock Your Apps">
+<meta property="og:description" content="Yarn is a screen time app for iPhone that makes you journal to unlock distracting apps.">
+<meta property="og:image" content="https://www.alcovecomputer.com/img/share.png">
+<meta property="og:url" content="https://www.alcovecomputer.com/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="site.css">
+
+<!-- Wobble filters, four of each. Every frame a drawing moves to a different
+     one at random: strokes shift a little on their own and the crayon grain
+     changes, like the same drawing traced again. "fine" is for small drawings. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="boil0" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="3" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="4.4" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="11" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="1.2" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="5" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="boil1" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="17" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="4.4" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="29" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="1.2" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="41" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="boil2" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="53" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="4.4" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="61" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="1.2" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="7" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="boil3" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="71" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="4.4" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="83" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="1.2" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="97" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="fine0" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="2.0" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="1" seed="11" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="0.7" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="5" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="fine1" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="17" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="2.0" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="1" seed="29" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="0.7" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="41" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="fine2" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="53" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="2.0" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="1" seed="61" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="0.7" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="7" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+  <filter id="fine3" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="71" result="lo"/><feDisplacementMap in="SourceGraphic" in2="lo" scale="2.0" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="1" seed="83" result="hi"/><feDisplacementMap in="d1" in2="hi" scale="0.7" xChannelSelector="G" yChannelSelector="B" result="d2"/><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="97" result="gr"/><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.3 0 0 0 1.62" result="g"/><feComposite in="d2" in2="g" operator="in"/></filter>
+</svg>
+
+<header class="wrap top">
+  <a class="brand" href="index.html" aria-label="Yarn home">
+    <i class="fig blue boil fine" style="--ar:256/212"><i class="ink" style="--src:url(img/yarn-face.png)"></i></i>
+    <span>Yarn</span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a class="text" href="#about">About</a>
+    <a class="store small" href="https://apps.apple.com/app/id6746372250" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <h1 class="sr">Yarn</h1>
+    <!-- The same seven-frame logo the app opens with, at the app's 0.15s a frame. -->
+    <i class="fig blue logo pop-on-load" style="--ar:560/270;--d:0ms" role="img" aria-label="Yarn" data-frames="img/logo1.png img/logo2.png img/logo3.png img/logo4.png img/logo5.png img/logo6.png img/logo7.png" data-ms="150"></i>
+    <p class="lede pop-on-load" style="--d:140ms">You can't break a habit you don't understand.</p>
+    <a class="store pop-on-load" style="--d:280ms" href="https://apps.apple.com/app/id6746372250" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>Download on the App Store</a>
+    <span class="meta">Free to download on iPhone</span>
+  </section>
+
+  <section class="wrap features" aria-label="What Yarn does">
+    <article class="feature">
+      <!-- Yarn with brain fog, the apps spinning round its head. Each icon is cut out on its own and set on one circle, 60deg apart, so they orbit his face evenly (clockwise, like their trails). -->
+      <div class="art"><i class="fig blue boil spinner pop-on-view" style="--ar:1" role="img" aria-label="Yarn with brain fog, app icons spinning around its head">
+        <i class="ring">
+          <i class="ink" style="--src:url(img/parts/icon1.png);translate:1.33% -6.50%"></i>
+          <i class="ink" style="--src:url(img/parts/icon2.png);translate:-7.39% -10.47%"></i>
+          <i class="ink" style="--src:url(img/parts/icon3.png);translate:-0.94% -9.42%"></i>
+          <i class="ink" style="--src:url(img/parts/icon4.png);translate:-5.02% -0.95%"></i>
+          <i class="ink" style="--src:url(img/parts/icon5.png);translate:-2.56% -5.26%"></i>
+          <i class="ink" style="--src:url(img/parts/icon6.png);translate:2.21% -6.34%"></i>
+        </i>
+        <i class="ink" style="--src:url(img/parts/head-face.png)"></i>
+      </i></div>
+      <div class="copy">
+        <h2>Why Do We Scroll?</h2>
+        <p>Every time you reach for your phone, there's a feeling behind it, like boredom, anxiety or avoidance. Yarn makes you journal to unlock your distracting apps, so you can see what it is.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <!-- Scrolling reels, then Yarn steps in: the phone cuts to Journal to Unlock, holds, and starts again. -->
+      <div class="art"><i class="phone-stage pop-on-view" data-scenes data-still="1" role="img" aria-label="A phone scrolling reels, then showing Journal to Unlock">
+        <i class="scene fig blue boil" style="--ar:275/471" data-scene="2400">
+          <i class="ink" style="--src:url(img/parts/phone-reels-frame.png)"></i>
+          <i class="feed"><i class="ink" style="--src:url(img/parts/phone-reels-feed.png)"></i><i class="ink next" style="--src:url(img/parts/phone-reels-feed.png)"></i></i>
+        </i>
+        <i class="scene fig blue boil" style="--ar:275/471" data-scene="2600" hidden><i class="ink" style="--src:url(img/phone-unlock.png)"></i></i>
+      </i></div>
+      <div class="copy">
+        <h2>Journal to Unlock Apps</h2>
+        <p>Pause before scrolling. Write a quick journal entry to unlock your distracting apps. Type it, or record a voice note when writing feels like too much.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="night" aria-label="Bedtime for your apps">
+    <div class="wrap">
+      <!-- The night from onboarding: 11 o'clock, Yarn still scrolling in the dark, the reels, then the apps fall asleep. -->
+      <div class="stage" data-scenes role="img" aria-label="An 11:00 clock, Yarn scrolling late at night, a phone scrolling reels, then a phone with its apps asleep">
+        <i class="scene wide fig blue boil" style="--ar:255/147" data-scene="1700">
+          <i class="ink" style="--src:url(img/parts/clock-body.png)"></i>
+          <i class="ink colon" style="--src:url(img/parts/clock-colon.png)"></i>
+          <i class="ink moon" style="--src:url(img/parts/clock-moon.png)"></i>
+          <i class="ink stars" style="--src:url(img/parts/clock-stars.png)"></i>
+        </i>
+        <i class="scene full fig blue boil" style="--ar:1" data-scene="2200" hidden>
+          <i class="ink" style="--src:url(img/parts/late-glow.png)"></i>
+          <i class="ink glow-hi" style="--src:url(img/parts/late-glow-hi.png)"></i>
+          <i class="ink" style="--src:url(img/parts/late-body.png)"></i>
+        </i>
+        <i class="scene fig blue boil" style="--ar:275/471" data-scene="2400" hidden>
+          <i class="ink" style="--src:url(img/parts/phone-reels-frame.png)"></i>
+          <i class="feed"><i class="ink" style="--src:url(img/parts/phone-reels-feed.png)"></i><i class="ink next" style="--src:url(img/parts/phone-reels-feed.png)"></i></i>
+        </i>
+        <i class="scene fig blue boil" style="--ar:275/471" data-scene="2600" hidden>
+          <i class="ink" style="--src:url(img/parts/phone-asleep-body.png)"></i>
+          <i class="ink apps-z" style="--src:url(img/parts/phone-asleep-z.png)"></i>
+        </i>
+      </div>
+      <div class="copy">
+        <h2>Set Bedtime Boundaries</h2>
+        <p>Schedule your apps to lock at bedtime, so you can wind down without scrolling late into the night.</p>
+        <!-- Like the bedtime picker in the app: two rows, the time in a pill. -->
+        <dl class="picker">
+          <div><dt>Sleep time</dt><dd>11:00 PM</dd></div>
+          <div><dt>Wake time</dt><dd>7:00 AM</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap features after-night" aria-label="More of what Yarn does">
+    <article class="feature">
+      <!-- The three book stacks the focus screen uses for short, medium and long sessions, played as a stack that grows. -->
+      <div class="art"><i class="fig pencil boil books pop-on-view" style="--ar:212/202" role="img" aria-label="Yarn sitting on a stack of books" data-frames="img/books2.png img/books1.png img/books3.png" data-ms="700" data-bump></i></div>
+      <div class="copy">
+        <h2>Enter Focus Sessions</h2>
+        <p>Block distracting apps completely while you work. Start a session yourself, or ask Yarn to start one.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <!-- Yarn's typing loop from the chat: frames 5,2,3,4 twice, 0.12s each, then a short hold. -->
+      <div class="art"><i class="fig blue ball pop-on-view" style="--ar:1" role="img" aria-label="Yarn's ball of yarn, spinning" data-frames="img/ball5.png img/ball2.png img/ball3.png img/ball4.png img/ball5.png img/ball2.png img/ball3.png img/ball4.png" data-ms="120" data-hold="100"></i></div>
+      <div class="copy">
+        <h2>Talk to Yarn</h2>
+        <p>When you want to talk something through, Yarn is there. It remembers what you've written, so each conversation picks up where the last one left off.</p>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="art"><i class="fig pencil boil writer pop-on-view" style="--ar:484/369" role="img" aria-label="Yarn writing in a journal">
+        <i class="ink" style="--src:url(img/parts/journal-body.png)"></i>
+        <i class="ink pen" style="--src:url(img/parts/journal-pen.png)"></i>
+      </i></div>
+      <div class="copy">
+        <h2>Pinned Notes</h2>
+        <p>Keep what you need to hear at the top of your journal, like a dopamine menu, your long-term goals or a note to read before you scroll. Yarn remembers them too.</p>
+      </div>
+    </article>
+
+    <!-- The lock and this line go together in onboarding too. -->
+    <article class="feature">
+      <div class="art"><i class="fig blue boil lock pop-on-view" style="--ar:134/198" role="img" aria-label="A padlock"><i class="ink" style="--src:url(img/lock.png)"></i></i></div>
+      <div class="copy">
+        <h2>Your Data Is Private</h2>
+        <p>Only you can read your journal entries and your conversations with Yarn. Your data is never sold, and it's never used to train AI models.</p>
+        <a class="more" href="privacy.html">Read the privacy policy</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="copy">
+        <h2>About Yarn</h2>
+        <p class="manifesto">We made Yarn as an answer to a question: what if language models could end phone addiction? One that would meet us in these moments with nothing but a few tools to help us scroll less, and a wish: that journaling would leave us more present, introspective, and sentimental.</p>
+      </div>
+      <i class="fig pencil boil reader pop-on-view" style="--ar:433/411" role="img" aria-label="Yarn reading a book"><i class="ink" style="--src:url(img/yarn-studying.png)"></i></i>
+    </div>
+  </section>
+
+  <section class="wrap end">
+    <!-- Yarn asleep, and its phone asleep beside it: the phone is the blank reels
+         phone turned on its side, with the "zzz.." from Apps Asleep floating up. -->
+    <div class="bedside pop-on-view" role="img" aria-label="Yarn asleep, with its phone asleep beside it">
+      <i class="fig pencil boil sleepy" style="--ar:422/266" aria-hidden="true">
+        <i class="ink" style="--src:url(img/parts/asleep-body.png)"></i>
+        <i class="ink zzz" style="--src:url(img/parts/asleep-z.png)"></i>
+      </i>
+      <i class="lying">
+        <i class="fig blue boil fine phone-zs" style="--ar:113/44"><i class="ink" style="--src:url(img/parts/phone-z-bold.png)"></i></i>
+        <i class="fig blue boil fine flat" style="--ar:471/272"><i class="ink" style="--src:url(img/parts/phone-lying-bold.png)"></i></i>
+      </i>
+    </div>
+    <a class="store" href="https://apps.apple.com/app/id6746372250" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>Download on the App Store</a>
+    <span class="meta">Free to download on iPhone</span>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span>&copy; 2026 Yarn</span>
+  <nav aria-label="Footer">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</footer>
+
+<script src="site.js"></script>
