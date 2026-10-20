@@ -1,5 +1,5 @@
 /* Layout: one calm column like a journal page; drawings sit beside short lines of copy, and one night band in the middle, the way the app's onboarding turns to night.
-   Always light, on purpose: the night band only reads as night against a day page. */
+*/
 :root{
   --paper:#F9F5EE;        /* white with a little warmth, like paper */
   --card:#EFEAE0;         /* warm divider tone for the paper */
@@ -20,6 +20,23 @@
   --serif:"Crimson Pro","Iowan Old Style","Palatino Linotype",Georgia,serif;
   color-scheme:light;
   --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+}
+
+/* Dark mode follows the visitor's phone, in the app's own dark background, so a late-night
+   visit isn't a bright page. The whole page is night then, so the night band blends in. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+      --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
+    --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
+    --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --mark:#3D5A94; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+      --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
+    --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
+    --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --mark:#3D5A94; color-scheme:dark;
 }
 
 html{scroll-behavior:smooth}
