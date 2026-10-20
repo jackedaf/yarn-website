@@ -166,7 +166,7 @@ a{color:inherit}
 /* The spinning icons are full-size layers; keep their invisible corners inside the drawing. */
 .spinner{width:min(300px,76vw);overflow:hidden}
 @supports (overflow:clip){.spinner{overflow:clip}}
-.ball{width:min(210px,56vw)}
+.ball{width:min(150px,40vw)}
 .books{width:min(250px,64vw)}
 
 
