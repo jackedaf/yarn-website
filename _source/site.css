@@ -15,6 +15,9 @@
   --night-card:#262422;
   --night-pill:#3A3633;
   --night-line:#33302D;
+  --app-card:#F0EEE6;       /* the app's card behind the focus presets */
+  --app-pill:#FAF9F5;
+  --app-pill-line:#E2E0DA;
   --mark:#D9E4FA;          /* selected text: a solid pale cornflower, like a highlighter */
   --night-mark:#3D5A94;
   --serif:"Crimson Pro","Iowan Old Style","Palatino Linotype",Georgia,serif;
@@ -29,6 +32,7 @@
       --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631;
     --mark:#3D5A94; color-scheme:dark;
   }
 }
@@ -36,6 +40,7 @@
       --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631;
     --mark:#3D5A94; color-scheme:dark;
 }
 
@@ -186,6 +191,15 @@ a{color:inherit}
 .picker dt{font-size:16px;color:var(--night-text)}
 .picker dd{margin:0;background:var(--night-pill);color:var(--night-text);border-radius:8px;padding:5px 11px;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
 
+/* ---------- Focus presets (from the app) ---------- */
+.presets{margin-top:24px;max-width:340px;background:var(--app-card);border-radius:16px;padding:14px 0;display:grid;gap:8px;overflow:hidden}
+/* Only the pills fade at the sides, like the app; the card stays solid. */
+.preset-row{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.preset-track{display:flex;gap:8px;width:max-content;animation:drift 60s linear infinite}
+.preset-row.right .preset-track{animation-direction:reverse;animation-duration:70s}
+.preset-track span{flex:none;font-size:15px;font-weight:500;color:var(--ink);background:var(--app-pill);border:1px solid var(--app-pill-line);border-radius:16px;padding:10px 14px;white-space:nowrap}
+@keyframes drift{to{transform:translateX(-50%)}}
+
 /* ---------- About ---------- */
 /* About is centred, a change of pace after the zigzag and the pair. */
 .about{padding-block:0 8px}
@@ -221,13 +235,14 @@ a{color:inherit}
   .feature,.night .copy{text-align:center}
   .feature p,.night p,.manifesto{margin-inline:auto}
   .picker{margin-inline:auto;text-align:left}
+  .presets{margin-inline:auto}
   .about .reader{order:-1}
   .nav a.text{display:none}
   .night .wrap{padding-block:72px}
 }
 @media (prefers-reduced-motion: reduce){
   .boil,.boil[data-b]{filter:none}
-  .pop-on-load,.pop-on-view.pop,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
+  .preset-track,.pop-on-load,.pop-on-view.pop,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
   .store:hover,.store:active{transform:none}
 }
 
