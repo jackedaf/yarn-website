@@ -20,6 +20,11 @@
   --app-pill-line:#E2E0DA;
   --app-row-line:#C2C0B6;    /* the schedule row's thin border */
   --app-chip:#E2E0DA;
+  --app-inset:#FAF9F5;       /* the lighter box inside Yarn's cards */
+  --app-line:#D9D7D1;
+  --app-button:#6F9BD6;      /* Yarn's card buttons (the app's cornflower) */
+  --app-button-text:#FAF9F5;
+  --pin:#F2B900;             /* pinned-note yellow */
   --mark:#D9E4FA;          /* selected text: a solid pale cornflower, like a highlighter */
   --night-mark:#3D5A94;
   --serif:"Crimson Pro","Iowan Old Style","Palatino Linotype",Georgia,serif;
@@ -35,6 +40,7 @@
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
     --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
+    --app-inset:#32302D; --app-line:#454340; --app-button:#9BBEFF; --app-button-text:#262422; --pin:#FEC754;
     --mark:#3D5A94; color-scheme:dark;
   }
 }
@@ -43,6 +49,7 @@
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
     --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
+    --app-inset:#32302D; --app-line:#454340; --app-button:#9BBEFF; --app-button-text:#262422; --pin:#FEC754;
     --mark:#3D5A94; color-scheme:dark;
 }
 
@@ -173,7 +180,6 @@ a{color:inherit}
 /* The spinning icons are full-size layers; keep their invisible corners inside the drawing. */
 .spinner{width:min(300px,76vw);overflow:hidden}
 @supports (overflow:clip){.spinner{overflow:clip}}
-.ball{width:min(150px,40vw)}
 .books{width:min(250px,64vw)}
 
 
@@ -202,6 +208,29 @@ a{color:inherit}
 .preset-track span{flex:none;font-size:15px;font-weight:500;color:var(--ink);background:var(--app-pill);border:1px solid var(--app-pill-line);border-radius:16px;padding:10px 14px;white-space:nowrap}
 @keyframes drift{to{transform:translateX(-50%)}}
 .presets{box-sizing:border-box;width:100%}
+
+/* ---------- Yarn's cards (Talk to Yarn) ----------
+   Copied from the app's chat cards: card, header, lighter inset box, button. */
+.yarn-chat{position:relative;width:min(300px,84vw);height:330px}
+.chat-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.chat-scene .ball{width:min(120px,32vw)}
+.y-card{width:100%;box-sizing:border-box;background:var(--app-card);border:1px solid var(--app-line);border-radius:18px;padding:16px;display:grid;gap:14px;text-align:left}
+.y-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.y-title{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.15;color:var(--ink)}
+.y-sub{font-size:13px;font-weight:600;color:var(--soft);margin:4px 0 0 2px}
+.y-x{width:12px;height:12px;flex:none;color:var(--soft);margin-top:4px}
+.y-inset{background:var(--app-inset);border-radius:18px;padding:12px;display:grid;gap:10px}
+.y-row{display:flex;justify-content:space-between;align-items:baseline}
+.y-row span{font-size:13px;font-weight:600;color:var(--soft)}
+.y-row b{font-size:15px;font-weight:600;color:var(--ink)}
+.y-row em{font-size:15px;font-style:normal;color:var(--ink)}
+.y-rule{height:1px;background:var(--app-line)}
+.y-btn{height:46px;border-radius:16px;background:var(--app-button);color:var(--app-button-text);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.y-btn svg{width:15px;height:15px}
+.y-link{font-size:14px;font-weight:600;color:var(--soft);text-align:center;margin-top:-4px}
+.y-idea{background:var(--app-inset);border:1px solid var(--app-line);border-radius:18px;padding:12px 14px;display:grid;gap:4px;text-align:center}
+.y-idea small{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--soft)}
+.y-idea span{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.2;color:var(--pin)}
 
 /* ---------- About ---------- */
 /* About is centred, a change of pace after the zigzag and the pair. */
