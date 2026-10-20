@@ -102,7 +102,8 @@ a{color:inherit}
   0%{rotate:0deg;translate:0 0}8%{rotate:-3deg;translate:-.6% 0}16%{rotate:2deg;translate:.4% -.4%}
   24%{rotate:-2.5deg;translate:-.4% 0}32%{rotate:1.5deg;translate:.6% -.3%}40%,100%{rotate:0deg;translate:0 0}
 }
-@keyframes flick{0%,58%{translate:0 0}62%{translate:0 -28%}66%{translate:0 -72%}70%,100%{translate:0 -100%}}
+/* A swipe: a long pause, then the screen slides up in five stop-motion steps. */
+@keyframes flick{0%,50%{translate:0 0}55%{translate:0 -12%}60%{translate:0 -32%}65%{translate:0 -58%}70%{translate:0 -82%}75%,100%{translate:0 -100%}}
 .zzz{animation:zzz 2.4s steps(1) infinite}
 .apps-z{animation:bob 1.8s steps(1) infinite}
 .moon{animation:rock 2s steps(1) infinite;transform-origin:77% 10%}
