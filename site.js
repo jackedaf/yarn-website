@@ -58,6 +58,27 @@
   }, { threshold: 0.4 });
   document.querySelectorAll('.pop-on-view').forEach(el => arrive.observe(el));
 
+  // The app icons round Yarn's head: each moves along an oval the shape of his
+  // face, one stop-motion step (11.25deg) per frame, turning as it goes so its
+  // trail stays behind it. Positions are in the drawing's own pixels (450 square).
+  const orbits = [...document.querySelectorAll('[data-orbit]')].map(el => {
+    const [cx, cy, rx, ry, t0] = el.dataset.orbit.split(',').map(Number);
+    const icons = [...el.children].map((ink, k) => {
+      const [x, y] = ink.dataset.sq.split(',').map(Number);
+      return { ink, x, y, start: t0 + 60 * k };
+    });
+    return { cx, cy, rx, ry, icons };
+  });
+  const placeOrbits = step => {
+    const turn = step * 11.25;
+    for (const o of orbits) for (const ic of o.icons) {
+      const a = (ic.start + turn) * Math.PI / 180;
+      const dx = (o.cx + o.rx * Math.cos(a) - ic.x) / 4.5, dy = (o.cy + o.ry * Math.sin(a) - ic.y) / 4.5;
+      ic.ink.style.translate = `${dx.toFixed(2)}% ${dy.toFixed(2)}%`;
+      ic.ink.style.rotate = `${turn}deg`;
+    }
+  };
+
   // Drawings that play as a short story (the night band, and the reels phone
   // that cuts to Journal to Unlock): each scene held for its own beat.
   const stages = [...document.querySelectorAll('[data-scenes]')].map(el => (
@@ -73,6 +94,7 @@
     const f = Math.floor(t / 150);
     if (f !== frame) {
       frame = f;
+      placeOrbits(f % 32);
       for (const el of onScreen) {
         const b = +(el.dataset.b || 0);
         el.dataset.b = (b + 1 + Math.floor(Math.random() * 3)) % 4;

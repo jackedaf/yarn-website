@@ -88,8 +88,7 @@ a{color:inherit}
 /* The phone's light on Yarn's face changes as the videos change. */
 @keyframes flicker{0%{visibility:visible}14%{visibility:hidden}22%{visibility:visible}46%{visibility:hidden}58%{visibility:visible}66%{visibility:hidden}88%{visibility:visible}}
 .glow-hi{animation:flicker 1.9s steps(1) infinite}
-@keyframes spin{to{rotate:360deg}}
-.ring{position:absolute;inset:0;animation:spin 4.8s steps(32) infinite;transform-origin:49.11% 49.11%}
+.ring{position:absolute;inset:0}
 .pen{animation:write 2.2s steps(1) infinite;transform-origin:67% 86%}
 .feed{position:absolute;inset:0;clip-path:inset(11.9% 8.7% 5.1% 11.3%)}
 .feed .ink{animation:flick 1.2s steps(1) infinite}
@@ -191,7 +190,7 @@ a{color:inherit}
 }
 @media (prefers-reduced-motion: reduce){
   .boil,.boil[data-b]{filter:none}
-  .pop-on-load,.pop-on-view.pop,.bump,.ring,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
+  .pop-on-load,.pop-on-view.pop,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
   .store:hover,.store:active{transform:none}
 }
 
