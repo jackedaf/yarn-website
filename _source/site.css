@@ -18,6 +18,8 @@
   --app-card:#F0EEE6;       /* the app's card behind the focus presets */
   --app-pill:#FAF9F5;
   --app-pill-line:#E2E0DA;
+  --app-row-line:#C2C0B6;    /* the schedule row's thin border */
+  --app-chip:#E2E0DA;
   --mark:#D9E4FA;          /* selected text: a solid pale cornflower, like a highlighter */
   --night-mark:#3D5A94;
   --serif:"Crimson Pro","Iowan Old Style","Palatino Linotype",Georgia,serif;
@@ -32,7 +34,7 @@
       --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
-    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
     --mark:#3D5A94; color-scheme:dark;
   }
 }
@@ -40,7 +42,7 @@
       --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
     --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
     --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
-    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
     --mark:#3D5A94; color-scheme:dark;
 }
 
@@ -199,6 +201,7 @@ a{color:inherit}
 .preset-row.right .preset-track{animation-direction:reverse;animation-duration:70s}
 .preset-track span{flex:none;font-size:15px;font-weight:500;color:var(--ink);background:var(--app-pill);border:1px solid var(--app-pill-line);border-radius:16px;padding:10px 14px;white-space:nowrap}
 @keyframes drift{to{transform:translateX(-50%)}}
+.presets{box-sizing:border-box;width:100%}
 
 /* ---------- About ---------- */
 /* About is centred, a change of pace after the zigzag and the pair. */
