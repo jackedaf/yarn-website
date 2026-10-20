@@ -124,6 +124,9 @@ a{color:inherit}
 .features{display:grid;gap:clamp(56px,9vw,104px);padding-block:24px 104px}
 .feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,6vw,72px)}
 .feature:nth-child(even) .art{order:2}
+/* After the night band the zigzag carries on: its drawing is on the left, so the next one goes right. */
+.after-night .feature:nth-child(odd) .art{order:2}
+.after-night .feature:nth-child(even) .art{order:0}
 .feature .art{display:flex;justify-content:center}
 .feature h2,.night h2,.about h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.6vw,36px);line-height:1.1;margin:0 0 12px;text-wrap:balance}
 .feature p,.night p{margin:0;max-width:40ch;color:var(--soft);text-wrap:pretty}
@@ -180,7 +183,7 @@ a{color:inherit}
 
 @media (max-width:720px){
   .feature,.night .wrap,.about .wrap{grid-template-columns:minmax(0,1fr)}
-  .feature .art,.feature:nth-child(even) .art{order:0}
+  .feature .art,.feature:nth-child(even) .art,.after-night .feature:nth-child(odd) .art{order:0}
   .feature,.night .copy{text-align:center}
   .feature p,.night p,.manifesto{margin-inline:auto}
   .picker{margin-inline:auto;text-align:left}
