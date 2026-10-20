@@ -122,9 +122,9 @@ a{color:inherit}
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:28px 88px;gap:24px}
 .hero .logo{width:min(520px,92%);cursor:pointer}
 .hero .lede{font-family:var(--serif);font-size:clamp(30px,4.6vw,44px);line-height:1.12;font-weight:500;max-width:18ch;text-wrap:balance;margin:0}
+.hero .tagline{font-size:21px;margin:-8px 0 0;color:var(--ink)}
 .hero p.sub{color:var(--soft);max-width:44ch;margin:0;text-wrap:pretty}
 .meta{font-size:13.5px;color:var(--soft)}
-.hero .meta{margin-top:-8px}
 
 /* ---------- Features ---------- */
 .features{display:grid;gap:clamp(56px,9vw,104px);padding-block:24px 104px}
