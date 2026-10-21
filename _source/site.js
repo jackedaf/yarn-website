@@ -49,7 +49,7 @@
   boils.forEach(el => seen.observe(el));
 
   // The app icons round Yarn's head: each moves along an oval the shape of his
-  // face, gliding smoothly (11.25deg every 0.24s), turning as it goes so its
+  // face, gliding smoothly (one turn every 10 seconds), turning as it goes so its
   // trail stays behind it. Positions are in the drawing's own pixels (450 square).
   const orbits = [...document.querySelectorAll('[data-orbit]')].map(el => {
     const [cx, cy, rx, ry, t0] = el.dataset.orbit.split(',').map(Number);
@@ -107,8 +107,8 @@
       }
     }
 
-    // The icons round Yarn's head glide smoothly: about 8 seconds a turn.
-    placeOrbits((t / 240) % 32);
+    // The icons round Yarn's head glide smoothly: 10 seconds a turn.
+    placeOrbits((t / 312.5) % 32);
 
     for (const s of seqs) {
       const i = Math.min(Math.floor(((t - s.start) % s.loop) / s.ms), s.layers.length - 1);
