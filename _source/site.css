@@ -241,7 +241,7 @@ a{color:inherit}
 .features.after-night{padding-block:104px}
 .lock{width:min(140px,40vw)}
 /* Sits at the end of the privacy line, as part of the text. */
-.more{font-size:15px;font-weight:500;color:var(--blue);text-decoration:none}
+.more{font:inherit;color:var(--blue);text-decoration:none}
 .more:hover{color:var(--ink)}
 
 /* ---------- End ---------- */
