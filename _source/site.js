@@ -15,7 +15,7 @@
       return ink;
     });
     const ms = +el.dataset.ms, hold = +(el.dataset.hold || 0);
-    return { el: box, layers, ms, loop: layers.length * ms + hold, shown: 0, bump: el.hasAttribute('data-bump') };
+    return { el: box, layers, ms, loop: layers.length * ms + hold, shown: 0, start: 0, bump: el.hasAttribute('data-bump') };
   });
 
   // Copy buttons (the contact page): copy the text, or select it if copying isn't allowed.
@@ -95,7 +95,7 @@
     if (o !== orbitStep) { orbitStep = o; placeOrbits(o % 32); }
 
     for (const s of seqs) {
-      const i = Math.min(Math.floor((t % s.loop) / s.ms), s.layers.length - 1);
+      const i = Math.min(Math.floor(((t - s.start) % s.loop) / s.ms), s.layers.length - 1);
       if (i !== s.shown) {
         s.layers[s.shown].classList.add('off');
         s.layers[i].classList.remove('off');
@@ -110,6 +110,8 @@
       st.scenes[st.i].hidden = true;
       st.i = (st.i + 1) % st.scenes.length;
       st.scenes[st.i].hidden = false;
+      // A drawing loop inside the scene (Yarn's typing) starts again from its first drawing.
+      for (const s of seqs) if (st.scenes[st.i].contains(s.el)) s.start = t;
     }
     requestAnimationFrame(tick);
   }
