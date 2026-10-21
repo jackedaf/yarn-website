@@ -224,6 +224,7 @@ a{color:inherit}
 .y-idea{background:var(--app-inset);border:1px solid var(--app-line);border-radius:18px;padding:12px 14px;display:grid;gap:4px;text-align:center}
 .y-idea small{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--soft)}
 .y-idea span{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.2;color:var(--pin)}
+.y-idea.prompt span{color:var(--app-button)}
 
 /* ---------- About ---------- */
 /* About is centred, a change of pace after the zigzag and the pair. */
