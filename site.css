@@ -204,8 +204,9 @@ a{color:inherit}
 /* ---------- Yarn's cards (Talk to Yarn) ----------
    Copied from the app's chat cards: card, header, lighter inset box, button. */
 .yarn-chat{position:relative;width:min(300px,84vw);height:330px}
-.chat-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.chat-scene .ball{width:min(120px,32vw)}
+.chat-scene{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start}
+/* The chat's typing ball: small, top-left, where Yarn's reply starts. */
+.chat-scene .ball{width:40px;margin:6px 0 0 4px}
 .y-card{width:100%;box-sizing:border-box;background:var(--app-card);border:1px solid var(--app-line);border-radius:18px;padding:16px;display:grid;gap:14px;text-align:left}
 .y-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .y-title{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.15;color:var(--ink)}
