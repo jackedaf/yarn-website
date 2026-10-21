@@ -49,7 +49,7 @@
   boils.forEach(el => seen.observe(el));
 
   // The app icons round Yarn's head: each moves along an oval the shape of his
-  // face, one stop-motion step (11.25deg) at a time, turning as it goes so its
+  // face, gliding smoothly (11.25deg every 0.24s), turning as it goes so its
   // trail stays behind it. Positions are in the drawing's own pixels (450 square).
   const orbits = [...document.querySelectorAll('[data-orbit]')].map(el => {
     const [cx, cy, rx, ry, t0] = el.dataset.orbit.split(',').map(Number);
@@ -65,18 +65,35 @@
       const a = (ic.start + turn) * Math.PI / 180;
       const dx = (o.cx + o.rx * Math.cos(a) - ic.x) / 4.5, dy = (o.cy + o.ry * Math.sin(a) - ic.y) / 4.5;
       ic.ink.style.translate = `${dx.toFixed(2)}% ${dy.toFixed(2)}%`;
-      ic.ink.style.rotate = `${turn}deg`;
+      ic.ink.style.rotate = `${turn.toFixed(2)}deg`;
     }
   };
 
   // Drawings that play as a short story (the night band, and the reels phone
   // that cuts to Journal to Unlock): each scene held for its own beat.
   const stages = [...document.querySelectorAll('[data-scenes]')].map(el => (
-    { scenes: [...el.querySelectorAll('[data-scene]')], i: 0, at: 0 }
+    { el, scenes: [...el.querySelectorAll('[data-scene]')], i: 0, at: 0, visible: false }
   ));
+  // A story only plays while it's on screen, and starts again from its first
+  // scene each time it comes into view, so you always see it in order.
+  const startStory = (st, t) => {
+    st.scenes.forEach((sc, k) => { sc.hidden = k !== 0; });
+    st.i = 0;
+    st.at = t;
+    for (const s of seqs) if (st.scenes[0].contains(s.el)) s.start = t;
+  };
 
   const t0 = performance.now();
-  let frame = -1, orbitStep = -1;
+  const storyWatch = new IntersectionObserver(entries => {
+    const t = Math.max(0, performance.now() - t0);
+    for (const e of entries) {
+      const st = stages.find(s => s.el === e.target);
+      if (e.isIntersecting && !st.visible) startStory(st, t);
+      st.visible = e.isIntersecting;
+    }
+  }, { threshold: 0.35 });
+  stages.forEach(st => storyWatch.observe(st.el));
+  let frame = -1;
   function tick(now) {
     const t = Math.max(0, now - t0);
 
@@ -90,9 +107,8 @@
       }
     }
 
-    // The icons round Yarn's head step every 0.24s: about 8 seconds a turn.
-    const o = Math.floor(t / 240);
-    if (o !== orbitStep) { orbitStep = o; placeOrbits(o % 32); }
+    // The icons round Yarn's head glide smoothly: about 8 seconds a turn.
+    placeOrbits((t / 240) % 32);
 
     for (const s of seqs) {
       const i = Math.min(Math.floor(((t - s.start) % s.loop) / s.ms), s.layers.length - 1);
@@ -105,7 +121,7 @@
     }
 
     for (const st of stages) {
-      if (t - st.at < +st.scenes[st.i].dataset.scene) continue;
+      if (!st.visible || t - st.at < +st.scenes[st.i].dataset.scene) continue;
       st.at = t;
       st.scenes[st.i].hidden = true;
       st.i = (st.i + 1) % st.scenes.length;
