@@ -100,7 +100,6 @@ a{color:inherit}
 
 /* Parts that move on their own */
 @keyframes zzz{0%{translate:0 0}25%{translate:1.5% -4%}50%{translate:3% -8%}75%{translate:1.5% -4%}}
-@keyframes bob{0%{translate:0 0}50%{translate:0 -2.5%}}
 @keyframes rock{0%{rotate:-7deg}50%{rotate:5deg}}
 @keyframes blink{0%{visibility:visible}50%{visibility:hidden}}
 @keyframes twinkle{0%,70%{visibility:visible}72%{visibility:hidden}84%{visibility:visible}}
@@ -111,7 +110,6 @@ a{color:inherit}
 /* A swipe: a long pause, then the screen slides up in five stop-motion steps. */
 @keyframes flick{0%,50%{translate:0 0}55%{translate:0 -12%}60%{translate:0 -32%}65%{translate:0 -58%}70%{translate:0 -82%}75%,100%{translate:0 -100%}}
 .zzz{animation:zzz 2.4s steps(1) infinite}
-.apps-z{animation:bob 1.8s steps(1) infinite}
 .moon{animation:rock 2s steps(1) infinite;transform-origin:77% 10%}
 .colon{animation:blink 1s steps(1) infinite}
 .stars{animation:twinkle 3s steps(1) infinite}
@@ -270,7 +268,7 @@ a{color:inherit}
 }
 @media (prefers-reduced-motion: reduce){
   .boil,.boil[data-b]{filter:none}
-  .preset-track,.bump,.glow-hi,.phone-zs,.zzz,.apps-z,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
+  .preset-track,.bump,.glow-hi,.phone-zs,.zzz,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
   .store:hover,.store:active{transform:none}
 }
 
