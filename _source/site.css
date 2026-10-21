@@ -203,10 +203,8 @@ a{color:inherit}
 
 /* ---------- Yarn's cards (Talk to Yarn) ----------
    Copied from the app's chat cards: card, header, lighter inset box, button. */
-/* Talk to Yarn: the chat starts level with the heading, like a conversation beside it. */
-.feature.talk{align-items:start}
-.feature.talk .copy{padding-top:2px}
-.yarn-chat{position:relative;width:min(300px,84vw);height:330px}
+.yarn-chat{position:relative;width:100%;max-width:340px;height:330px;margin-top:24px}
+.face{width:min(240px,62vw)}
 .chat-scene{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start}
 /* The chat's typing ball: small, top-left, where Yarn's reply starts. */
 .chat-scene .ball{width:60px;margin:4px 0 0 2px}
@@ -264,7 +262,7 @@ a{color:inherit}
   .feature,.night .copy{text-align:center}
   .feature p,.night p,.manifesto{margin-inline:auto}
   .picker{margin-inline:auto;text-align:left}
-  .presets{margin-inline:auto}
+  .presets,.yarn-chat{margin-inline:auto}
   .about .reader{order:-1}
   .nav a.text{display:none}
   .night .wrap{padding-block:72px}
