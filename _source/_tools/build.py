@@ -23,7 +23,12 @@ HEAD_EXTRA = """<link rel="icon" type="image/png" href="/img/icon-32.png">
 <meta property="og:image" content="{site}/img/share-wide.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The hand-drawn Yarn logo above the words Journal to Unlock Apps">
+<meta property="og:image:alt" content="The hand-drawn Yarn logo">
+<meta property="og:video" content="{site}/img/share.mp4">
+<meta property="og:video:secure_url" content="{site}/img/share.mp4">
+<meta property="og:video:type" content="video/mp4">
+<meta property="og:video:width" content="1200">
+<meta property="og:video:height" content="630">
 <meta property="og:url" content="{site}/{path}">
 <link rel="canonical" href="{site}/{path}">
 <meta name="twitter:card" content="summary_large_image">
@@ -76,7 +81,7 @@ for rel in sorted(used - GENERATED):
     dst = os.path.join(OUT, rel)
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     shutil.copy(os.path.join(SRC, rel), dst)
-for extra in ("icon-32.png", "icon-180.png", "share-wide.png"):
+for extra in ("icon-32.png", "icon-180.png", "share-wide.png", "share.mp4"):
     shutil.copy(os.path.join(SRC, "_tools", extra), os.path.join(OUT, "img", extra))
 open(os.path.join(OUT, "404.html"), "w").write(clean_links(open(os.path.join(SRC, "_tools", "404.html")).read()))
 # The CNAME file claims www.alcovecomputer.com for GitHub Pages. Only add it
