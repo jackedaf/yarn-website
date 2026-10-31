@@ -1,0 +1,317 @@
+/* Layout: one calm column like a journal page; drawings sit beside short lines of copy, and one night band in the middle, the way the app's onboarding turns to night.
+*/
+:root{
+  --paper:#F9F5EE;        /* white with a little warmth, like paper */
+  --card:#EFEAE0;         /* warm divider tone for the paper */
+  --ink:#141413;          /* primaryText */
+  --soft:#73716D;         /* secondaryText */
+  --pencil:#4A4944;       /* the books / journal drawings' grey */
+  --blue:#6495ED;         /* cornflower, the onboarding blue */
+  --button:#141413;
+  --button-text:#FAF9F5;
+  --night:#171312;
+  --night-text:#FAF9F5;
+  --night-soft:#C2C0B6;
+  --night-card:#262422;
+  --night-pill:#3A3633;
+  --night-line:#33302D;
+  --app-card:#F0EEE6;       /* the app's card behind the focus presets */
+  --app-pill:#FAF9F5;
+  --app-pill-line:#E2E0DA;
+  --app-row-line:#C2C0B6;    /* the schedule row's thin border */
+  --app-chip:#E2E0DA;
+  --app-inset:#FAF9F5;       /* the lighter box inside Yarn's cards */
+  --app-line:#D9D7D1;
+  --app-button:#6F9BD6;      /* Yarn's card buttons (the app's cornflower) */
+  --app-button-text:#FAF9F5;
+  --pin:#F2B900;             /* pinned-note yellow */
+  --mark:#D9E4FA;          /* selected text: a solid pale cornflower, like a highlighter */
+  --night-mark:#3D5A94;
+  --serif:"Crimson Pro","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  color-scheme:light;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+}
+
+/* Dark mode follows the visitor's phone, in the app's own dark background, so a late-night
+   visit isn't a bright page. The whole page is night then, so the night band blends in. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+      --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
+    --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
+    --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
+    --app-inset:#32302D; --app-line:#454340; --app-button:#9BBEFF; --app-button-text:#262422; --pin:#FEC754;
+    --mark:#3D5A94; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+      --paper:#171312; --card:#262422; --ink:#F8F8F7; --soft:#C2C0B6; --pencil:#F0EEE6;
+    --blue:#7FA6F0; --button:#F8F8F7; --button-text:#141413;
+    --night:#171312; --night-card:#262422; --night-pill:#32302D; --night-line:#2E2B29;
+    --app-card:#262422; --app-pill:#171312; --app-pill-line:#3A3631; --app-row-line:#4E4B47; --app-chip:#3A3733;
+    --app-inset:#32302D; --app-line:#454340; --app-button:#9BBEFF; --app-button-text:#262422; --pin:#FEC754;
+    --mark:#3D5A94; color-scheme:dark;
+}
+
+html{scroll-behavior:smooth}
+/* No browser margin round the page, so the night band runs edge to edge. */
+html,body{margin:0}
+/* Nothing may stick out sideways: on iPhone that makes Safari zoom the whole page out. */
+html,body{overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+/* Hidden but still read by Google and screen readers. clip-path as well as clip, so Safari shows no stray pixel of it. */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+::selection{background:var(--mark);color:var(--ink)}
+.night ::selection{background:var(--night-mark);color:var(--night-text)}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+/* ---------- Drawings ----------
+   Every drawing is the original PNG used as a mask and filled with a theme
+   colour, so the same art recolours itself for light and dark. A .fig has
+   the drawing's own proportions, so its parts (cut from the same drawing,
+   same canvas) line up exactly and can move on their own.
+   .boil runs it through a wobble filter that changes every 0.15s (the
+   logo's own frame rate), each drawing on its own beat: strokes shift a
+   little and the crayon grain changes, as if traced again by hand. */
+.fig,.drawing{position:relative;display:block;max-width:100%}
+.fig{aspect-ratio:var(--ar)}
+.ink{position:absolute;inset:0;background:var(--c,var(--blue));
+  -webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat}
+.ink.off{visibility:hidden}
+.boil{filter:url(#boil0)}
+.boil[data-b="1"]{filter:url(#boil1)}
+.boil[data-b="2"]{filter:url(#boil2)}
+.boil[data-b="3"]{filter:url(#boil3)}
+.boil.fine{filter:url(#fine0)}
+.boil.fine[data-b="1"]{filter:url(#fine1)}
+.boil.fine[data-b="2"]{filter:url(#fine2)}
+.boil.fine[data-b="3"]{filter:url(#fine3)}
+.blue{--c:var(--blue)}
+.pencil{--c:var(--pencil)}
+
+/* Stop-motion timing: every move holds a pose, then snaps to the next. */
+@keyframes bump{0%{transform:scale(1.035,.965)}50%{transform:scale(.985,1.015)}100%{transform:none}}
+.layers{position:absolute;inset:0}
+.bump{animation:bump .25s steps(1);transform-origin:50% 100%}
+
+/* Parts that move on their own */
+@keyframes zzz{0%{translate:0 0}25%{translate:1.5% -4%}50%{translate:3% -8%}75%{translate:1.5% -4%}}
+@keyframes rock{0%{rotate:-7deg}50%{rotate:5deg}}
+@keyframes blink{0%{visibility:visible}50%{visibility:hidden}}
+@keyframes twinkle{0%,70%{visibility:visible}72%{visibility:hidden}84%{visibility:visible}}
+@keyframes write{
+  0%{rotate:0deg;translate:0 0}8%{rotate:-3deg;translate:-.6% 0}16%{rotate:2deg;translate:.4% -.4%}
+  24%{rotate:-2.5deg;translate:-.4% 0}32%{rotate:1.5deg;translate:.6% -.3%}40%,100%{rotate:0deg;translate:0 0}
+}
+/* A swipe: a long pause, then the screen slides up in five stop-motion steps. */
+@keyframes flick{0%,50%{translate:0 0}55%{translate:0 -12%}60%{translate:0 -32%}65%{translate:0 -58%}70%{translate:0 -82%}75%,100%{translate:0 -100%}}
+.zzz{animation:zzz 2.4s steps(1) infinite}
+.moon{animation:rock 2s steps(1) infinite;transform-origin:77% 10%}
+.colon{animation:blink 1s steps(1) infinite}
+.stars{animation:twinkle 3s steps(1) infinite}
+/* The phone's light on Yarn's face changes as the videos change. */
+@keyframes flicker{0%{visibility:visible}14%{visibility:hidden}22%{visibility:visible}46%{visibility:hidden}58%{visibility:visible}66%{visibility:hidden}88%{visibility:visible}}
+.glow-hi{animation:flicker 2.6s steps(1) infinite}
+.ring{position:absolute;inset:0}
+.pen{animation:write 2.2s steps(1) infinite;transform-origin:67% 86%}
+.feed{position:absolute;inset:0;clip-path:inset(11.9% 8.7% 5.1% 11.3%)}
+.feed .ink{animation:flick 1.6s steps(1) infinite}
+.feed .ink.next{top:100%;bottom:-100%}
+
+/* ---------- Header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .fig{width:46px}
+.nav{display:flex;align-items:center;gap:22px;font-size:15px;font-weight:500}
+.nav a.text{text-decoration:none;color:var(--soft)}
+.nav a.text:hover{color:var(--ink)}
+
+/* The whole button tilts as one piece and snaps there, like a card nudged by hand. */
+.store{display:inline-flex;align-items:center;gap:9px;background:var(--button);color:var(--button-text);
+  text-decoration:none;font-weight:600;font-size:16px;padding:13px 22px 13px 18px;border-radius:16px}
+.store:hover{transform:rotate(-2deg) translateY(-1px)}
+.store:active{transform:rotate(1deg) translateY(1px)}
+.store svg{width:19px;height:19px;flex:none;fill:currentColor;margin-top:-2px}
+.store.small{font-size:14px;padding:9px 15px 9px 13px;border-radius:13px;gap:7px}
+.store.small svg{width:15px;height:15px}
+
+/* ---------- Hero ---------- */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:28px 88px;gap:24px}
+.hero .logo{width:min(520px,92%);cursor:pointer}
+.hero .lede{font-family:var(--serif);font-size:clamp(30px,4.6vw,44px);line-height:1.12;font-weight:500;max-width:18ch;text-wrap:balance;margin:0}
+.hero .tagline{font-size:21px;margin:-8px 0 0;color:var(--ink)}
+.hero p.sub{color:var(--soft);max-width:44ch;margin:0;text-wrap:pretty}
+.meta{font-size:13.5px;color:var(--soft)}
+
+/* ---------- Features ---------- */
+.features{display:grid;gap:clamp(56px,9vw,104px);padding-block:24px 104px}
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,6vw,72px)}
+.feature:nth-child(even) .art{order:2}
+/* After the night band the zigzag carries on: its drawing is on the left, so the next one goes right. */
+.after-night .feature:nth-child(odd) .art{order:2}
+.after-night .feature:nth-child(even) .art{order:0}
+/* Pinned Notes and Privacy as a pair: drawing above, text below, side by side. */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(40px,7vw,88px);align-items:start}
+.after-night .pair .feature .art{order:0;height:190px;align-items:flex-end}
+.pair .feature{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:26px}
+.pair .feature p{margin-inline:auto;max-width:36ch}
+.pair .writer{width:min(240px,60vw)}
+.pair .lock{width:min(104px,30vw)}
+.feature .art{display:flex;justify-content:center}
+.feature h2,.night h2,.about h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.6vw,36px);line-height:1.1;margin:0 0 12px;text-wrap:balance}
+.feature p,.night p{margin:0;max-width:40ch;color:var(--soft);text-wrap:pretty}
+.feature .copy{min-width:0}
+.phone-stage{position:relative;display:block;width:min(200px,56vw);aspect-ratio:275/471}
+.phone-stage .scene{height:100%}
+/* The spinning icons are full-size layers; keep their invisible corners inside the drawing. */
+.spinner{width:min(300px,76vw);overflow:hidden}
+@supports (overflow:clip){.spinner{overflow:clip}}
+.books{width:min(250px,64vw)}
+
+
+/* ---------- Night band ---------- */
+.night{background:var(--night);color:var(--night-text);--blue:#7FA6F0;--pencil:#F0EEE6}
+.night .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,6vw,72px);padding-block:96px}
+.night p{color:var(--night-soft)}
+.night .copy{min-width:0}
+.stage{position:relative;width:min(300px,72vw);aspect-ratio:1;margin:0 auto}
+.scene{position:absolute;left:50%;top:50%;translate:-50% -50%;height:88%}
+.scene.wide{width:92%;height:auto}
+.scene.full{height:112%}
+
+.picker{margin:26px 0 0;max-width:330px;background:var(--night-card);border-radius:14px;padding:4px 0}
+.picker div{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 12px 9px 16px}
+.picker div+div{border-top:1px solid var(--night-line)}
+.picker dt{font-size:16px;color:var(--night-text)}
+.picker dd{margin:0;background:var(--night-pill);color:var(--night-text);border-radius:8px;padding:5px 11px;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
+
+/* ---------- Focus presets (from the app) ---------- */
+.presets{margin-top:24px;max-width:340px;background:var(--app-card);border-radius:16px;padding:14px 0;display:grid;gap:8px;overflow:hidden}
+/* Only the pills fade at the sides, like the app; the card stays solid. */
+.preset-row{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.preset-track{display:flex;gap:8px;width:max-content;animation:drift 60s linear infinite}
+.preset-row.right .preset-track{animation-direction:reverse;animation-duration:70s}
+.preset-track span{flex:none;font-size:15px;font-weight:500;color:var(--ink);background:var(--app-pill);border:1px solid var(--app-pill-line);border-radius:16px;padding:10px 14px;white-space:nowrap}
+@keyframes drift{to{transform:translateX(-50%)}}
+.presets{box-sizing:border-box;width:100%}
+
+/* ---------- Yarn's cards (Talk to Yarn) ----------
+   Copied from the app's chat cards: card, header, lighter inset box, button. */
+.yarn-chat{position:relative;width:100%;max-width:340px;height:330px;margin-top:24px}
+.face{width:min(240px,62vw)}
+.chat-scene{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start}
+/* The chat's typing ball: small, top-left, where Yarn's reply starts. */
+.chat-scene .ball{width:60px;margin:4px 0 0 2px}
+.y-card{width:100%;box-sizing:border-box;background:var(--app-card);border:1px solid var(--app-line);border-radius:18px;padding:16px;display:grid;gap:14px;text-align:left}
+.y-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.y-title{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.15;color:var(--ink)}
+.y-sub{font-size:13px;font-weight:600;color:var(--soft);margin:4px 0 0 2px}
+.y-x{width:12px;height:12px;flex:none;color:var(--soft);margin-top:4px}
+.y-inset{background:var(--app-inset);border-radius:18px;padding:12px;display:grid;gap:10px}
+.y-row{display:flex;justify-content:space-between;align-items:baseline}
+.y-row span{font-size:13px;font-weight:600;color:var(--soft)}
+.y-row b{font-size:15px;font-weight:600;color:var(--ink)}
+.y-row em{font-size:15px;font-style:normal;color:var(--ink)}
+.y-rule{height:1px;background:var(--app-line)}
+.y-btn{height:46px;border-radius:16px;background:var(--app-button);color:var(--app-button-text);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.y-btn svg{width:15px;height:15px}
+.y-link{font-size:14px;font-weight:600;color:var(--soft);text-align:center;margin-top:-4px}
+.y-idea{background:var(--app-inset);border:1px solid var(--app-line);border-radius:18px;padding:12px 14px;display:grid;gap:4px;text-align:center}
+.y-idea small{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--soft)}
+.y-idea span{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.2;color:var(--pin)}
+.y-idea.prompt span{color:var(--app-button)}
+
+/* ---------- Reviews ----------
+   Two App Store reviews and Mapu's Substack post, three cards the same size, in the App
+   Store's greys and system font. Each reads top to bottom the same way: where it's from,
+   the title, the words, then who and when, which sits on the bottom edge of every card. */
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,24px);padding-block:0 104px;
+  --r-card:#F2F2F7;--r-text:#000;--r-soft:#8A8A8E}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .reviews{--r-card:#1C1C1E;--r-text:#FFF;--r-soft:#8D8D93}}
+:root[data-theme="dark"] .reviews{--r-card:#1C1C1E;--r-text:#FFF;--r-soft:#8D8D93}
+.review{margin:0;display:flex;flex-direction:column;gap:10px;background:var(--r-card);color:var(--r-text);border-radius:26px;padding:22px;text-align:left;text-decoration:none;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
+a.review:hover h3{text-decoration:underline;text-underline-offset:3px}
+.r-top{display:flex;align-items:center;gap:6px;height:18px;font-size:14px;font-weight:600;color:var(--r-text)}
+.review .rating{font-size:15px;letter-spacing:1px;color:var(--r-text)}
+.p-logo{width:14px;height:14px;fill:currentColor}
+.review h3{margin:0;font-size:17px;line-height:1.3;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+.review blockquote{margin:0;flex:1;font-size:15px;line-height:1.45;text-wrap:pretty}
+.review blockquote b{font-weight:600}
+.review figcaption,.r-by{margin-top:6px;font-size:14px;color:var(--r-soft)}
+.review figcaption b,.r-by b{font-weight:600;color:var(--r-text)}
+
+/* ---------- About ---------- */
+/* About is centred, a change of pace after the zigzag and the pair. */
+.about{padding-block:0 8px}
+.about .wrap{display:flex;flex-direction:column;align-items:center;gap:26px}
+.about .copy{min-width:0;max-width:46ch;text-align:center}
+.about .manifesto{text-align:center}
+.manifesto{margin:0;max-width:44ch;color:var(--soft);text-wrap:pretty}
+.writer{width:min(270px,66vw)}
+.reader{width:min(200px,54vw);order:-1}
+
+/* ---------- Privacy ---------- */
+.features.after-night{padding-block:104px}
+.lock{width:min(140px,40vw)}
+/* Sits at the end of the privacy line, as part of the text. */
+.more{font:inherit;color:var(--blue);text-decoration:none}
+.more:hover{color:var(--ink)}
+
+/* ---------- End ---------- */
+.end{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding-block:80px 48px}
+.bedside{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
+.end .sleepy{width:170px}
+.lying{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:96px}
+.flat{width:96px;rotate:5deg;transform-origin:50% 100%}
+.phone-zs{width:44px;margin-left:52px;animation:rise 2.4s steps(1) -1.2s infinite}
+@keyframes rise{0%{translate:0 0}25%{translate:1px -5px}50%{translate:2px -10px}75%{translate:1px -5px}}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;border-top:1.5px solid var(--card);padding-block:22px 34px;font-size:14px;color:var(--soft)}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+
+@media (max-width:860px){.reviews{grid-template-columns:minmax(0,1fr);max-width:520px}}
+@media (max-width:720px){
+  .feature,.night .wrap,.pair{grid-template-columns:minmax(0,1fr)}
+  .feature .art,.feature:nth-child(even) .art,.after-night .feature:nth-child(odd) .art{order:0}
+  .feature,.night .copy{text-align:center}
+  .feature p,.night p,.manifesto{margin-inline:auto}
+  .picker{margin-inline:auto;text-align:left}
+  .presets,.yarn-chat{margin-inline:auto}
+  .about .reader{order:-1}
+  .nav a.text{display:none}
+  .night .wrap{padding-block:72px}
+}
+@media (prefers-reduced-motion: reduce){
+  .boil,.boil[data-b]{filter:none}
+  .preset-track,.bump,.glow-hi,.phone-zs,.zzz,.moon,.colon,.stars,.pen,.feed .ink{animation:none}
+  .store:hover,.store:active{transform:none}
+}
+
+/* ---------- Terms and privacy ---------- */
+.legal{max-width:720px;padding-block:32px 88px}
+.legal-head{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:40px}
+.legal-head .drawing{height:104px;margin-bottom:14px}
+.legal h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,5vw,48px);line-height:1.05;margin:0}
+.legal .updated{color:var(--soft);font-size:14px;margin:0}
+.legal h2{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.2;margin:44px 0 10px}
+.legal h3{font-size:16px;font-weight:600;margin:24px 0 6px}
+.legal p,.legal li{text-wrap:pretty}
+.legal p{margin:0 0 12px}
+.legal ul,.legal ol{margin:0 0 14px;padding-left:22px;display:grid;gap:6px}
+.legal a{color:var(--blue);text-underline-offset:3px}
+.legal strong{font-weight:600}
+
+/* ---------- Contact ---------- */
+.contact-card{display:grid;gap:18px;margin-top:8px}
+.contact-card h2{margin-top:0}
+.email{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.email code{font-family:var(--serif);font-size:clamp(22px,3vw,26px);user-select:all;overflow-wrap:anywhere}
+.copy-btn{font:inherit;font-size:14px;font-weight:600;color:var(--button-text);background:var(--button);border:0;border-radius:11px;padding:8px 14px;cursor:pointer}
+.copy-btn:hover{transform:rotate(-2deg) translateY(-1px)}
+address{font-style:normal}
