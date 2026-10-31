@@ -230,9 +230,7 @@ a{color:inherit}
    Store's greys and system font. Each reads top to bottom the same way: where it's from,
    the title, the words, then who and when, which sits on the bottom edge of every card. */
 .reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,24px);padding-block:0 104px;
-  --r-card:#F2F2F7;--r-text:#000;--r-soft:#8A8A8E}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .reviews{--r-card:#1C1C1E;--r-text:#FFF;--r-soft:#8D8D93}}
-:root[data-theme="dark"] .reviews{--r-card:#1C1C1E;--r-text:#FFF;--r-soft:#8D8D93}
+  --r-card:var(--app-card);--r-text:var(--ink);--r-soft:var(--soft)}
 .review{margin:0;display:flex;flex-direction:column;gap:10px;background:var(--r-card);color:var(--r-text);border-radius:26px;padding:22px;text-align:left;text-decoration:none;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
 .review:hover h3{text-decoration:underline;text-underline-offset:3px}
