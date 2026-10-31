@@ -241,7 +241,6 @@ a.review:hover h3{text-decoration:underline;text-underline-offset:3px}
 .p-logo{width:14px;height:14px;fill:currentColor}
 .review h3{margin:0;font-size:17px;line-height:1.3;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
 .review blockquote{margin:0;flex:1;font-size:15px;line-height:1.45;text-wrap:pretty}
-.review blockquote b{font-weight:600}
 .review figcaption,.r-by{margin-top:6px;font-size:14px;color:var(--r-soft)}
 .review figcaption b,.r-by b{font-weight:600;color:var(--r-text)}
 
