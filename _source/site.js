@@ -48,9 +48,10 @@
   });
   boils.forEach(el => seen.observe(el));
 
-  // The app icons round Yarn's head: each moves along an oval the shape of his
-  // face, gliding smoothly (one turn every 10 seconds), turning as it goes so its
-  // trail stays behind it. Positions are in the drawing's own pixels (450 square).
+  // The app icons round Yarn's head sit in six places on an oval the shape of his
+  // face. They never glide: on each beat every icon jumps into the next one's place
+  // and holds, like stop motion, turning so its trail stays behind it. Positions are
+  // in the drawing's own pixels (450 square).
   const orbits = [...document.querySelectorAll('[data-orbit]')].map(el => {
     const [cx, cy, rx, ry, t0] = el.dataset.orbit.split(',').map(Number);
     const icons = [...el.children].map((ink, k) => {
@@ -59,8 +60,7 @@
     });
     return { cx, cy, rx, ry, icons };
   });
-  const placeOrbits = step => {
-    const turn = step * 11.25;
+  const placeOrbits = turn => {
     for (const o of orbits) for (const ic of o.icons) {
       const a = (ic.start + turn) * Math.PI / 180;
       const dx = (o.cx + o.rx * Math.cos(a) - ic.x) / 4.5, dy = (o.cy + o.ry * Math.sin(a) - ic.y) / 4.5;
@@ -107,8 +107,8 @@
       }
     }
 
-    // The icons round Yarn's head glide smoothly: 10 seconds a turn.
-    placeOrbits((t / 312.5) % 32);
+    // The icons round Yarn's head move up one place every 0.225s.
+    placeOrbits(Math.floor(t / 225) % 6 * 60);
 
     for (const s of seqs) {
       const i = Math.min(Math.floor(((t - s.start) % s.loop) / s.ms), s.layers.length - 1);
